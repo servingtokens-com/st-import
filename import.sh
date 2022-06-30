@@ -16,7 +16,7 @@ import_usage() {
 	echo "Usage: import \"org/repo/mod.sh\"" >&2
 	echo "" >&2
 	echo "  Documentation: https://import.sh" >&2
-	echo "  Core Modules: https://github.com/importpw" >&2
+	echo "  Core Modules: https://github.com/servingtokens-com" >&2
 	echo "" >&2
 	echo "  Examples:" >&2
 	echo "    import \"assert\"  # import the latest commit of the 'assert' module " >&2
