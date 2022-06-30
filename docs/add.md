@@ -12,7 +12,7 @@ the downloaded script.
 # The URL is downloaded once, cached forever, and then sourced
 import "https://git.io/fAWiz"
 
-add 33 + 3
+add 33 3
 ```
 
 
