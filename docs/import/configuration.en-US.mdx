@@ -1,0 +1,32 @@
+---
+title: React Hooks for Data Fetching
+---
+
+import Callout from 'nextra-theme-docs/callout'
+import Features from 'components/features'
+import Bleed from 'nextra-theme-docs/bleed'
+import CustomLink from 'components/CustomLink'
+
+{
+// wrapped with {} to mark it as javascript so mdx will not put it under a p tag
+}
+{<h1 className="inline-block pb-0 text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-300">Configuration</h1>}
+
+<Callout emoji="✅">
+ Creating an account is <strong>easy</strong>, and requires no <strong>card</strong> to <CustomLink href="http://localhost:3333/auth/register">register</CustomLink>.
+</Callout>
+
+<br />
+
+`IMPORT_CACHE` - The raw shell scripts, named after the sha1sum of the file contents
+
+`IMPORT_CURL_OPTS` - Additional options to pass to curl. See the <CustomLink href="https://curl.haxx.se/docs/manpage.html">curl manpage</CustomLink> for its docs.
+
+`IMPORT_DEBUG` - If this variable is set, then debugging information related to import will be printed to stderr.
+
+`IMPORT_RELOAD` - If this variable is set, then all import calls will force-reload from the source URL.
+
+`IMPORT_TRACE` - Path to a filename to print imported URLs for tracing purposes.
+
+`IMPORT_SERVER` - The server to use for <CustomLink href="https://import.sh/docs/namespaced-imports">namespaced imports</CustomLink>.
+Defaults to https://import.sh.

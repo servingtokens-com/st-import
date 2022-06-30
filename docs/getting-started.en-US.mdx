@@ -1,0 +1,193 @@
+---
+title: React Hooks for Data Fetching
+---
+
+import Callout from 'nextra-theme-docs/callout'
+import Features from 'components/features'
+import Bleed from 'nextra-theme-docs/bleed'
+import CustomLink from 'components/CustomLink'
+
+{
+// wrapped with {} to mark it as javascript so mdx will not put it under a p tag
+}
+{<h1 className="inline-block pb-0 text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-300">Documentation</h1>}
+
+<Callout emoji="✅">
+ Creating an account is <strong>easy</strong>, and requires no <strong>card</strong> to <CustomLink href="http://localhost:3333/auth/register">register</CustomLink>.
+</Callout>
+
+{<h1 className="text-gray-400">Navigating the Docs...</h1>}
+
+```bash
+ _STS_DOCS
+|
+|
+|__/APP
+|_____/*/COMMAND_LINE_USE
+|_______________________/*/installation
+|_____/*/WEB_APP_USE
+|__________________/*/installation
+|
+|
+|__/ARCHITECTURE
+|
+|_______________/*/application
+|_______________/*/containers
+|_______________/*/layers
+|_______________/*/modules
+|_______________/*/network
+|
+|
+|__/BUILDING
+|
+|___________/*/custom-installs
+|_____________________________/*/steghide
+|
+|
+|__/CONCEPTS
+|
+|___________/*/self-service-endpoints
+|___________/*/seperation-of-concerns
+|___________/*/static-services
+|___________/*/transition-systems
+|___________/*/virtualization
+|
+|
+|__/CORE
+|______/*/coming-soon
+|
+|
+|__/ENDPOINTS
+|____________/*/coming-soon
+|
+|
+|__/EXAMPLES
+|___________/*/dns
+|_________________/*/dns-lookup-localhost
+|___________/*/os
+|________________/*/os-version
+|
+|
+|__/FUNCTIONS
+|
+|____________/*/bash
+|___________________/*/modules
+|____________________________/*/ab
+|____________________________/*/assert
+|____________________________/*/curl
+|____________________________/*/mksquashfs
+|____________________________/*/querystring
+|
+|___________________/*/functions
+|______________________________/*/advanced
+|________________________________________/*/token
+|______________________________/*/experimental
+|
+|____________/*/typescript
+|___________________/*/#coming-soon
+|
+|
+|____________/*/foreign-function-interfaces
+|___________________/*/#coming-soon
+|
+|____________/*/rust
+|___________________/*/#possibly
+|
+|
+|__/GETTING_STARTED
+|__________________/*/#coming-soon
+|
+|__/IMPORT
+|________/*/api
+|________/*/authentication
+|________/*/caching
+|________/*/configuration
+|________/*/installation
+|________/*/namespaced-imports
+|________/*/relative-imports
+|
+|
+|__/LOGGING
+|
+|
+|__/SELF_HOSTING
+|_______________*/installation
+|_______________*/star-gazer
+|
+|
+|__/TESTING
+|__________/*/checks
+|
+|
+|__/THANKS
+|
+|
+|__/TOKENS
+```
+
+<h2 className="mt-16 mb-20 text-center">Using the [Copy Code](/examples/basic)  button</h2>
+
+{<h1 className="text-gray-400">Building scripts...</h1>}
+
+```bash
+#!/usr/bin/env import
+import "querystring@1.3.0"
+
+# to use https://sandbox-runtime-gh-1041.vercel.app/api/mksquashfs-w?tokenykey123
+#codesandbox 
+
+handler() {
+	http_response_json
+	local path
+	local query
+	path="$(jq -r '.path' < "$1")"
+	query="$(querystring "$path")"
+	b=$(echo "$query" | sed -n 's/^.*b=\([^&]*\).*$/\1/p' | sed "s/%20/ /g")
+	echo "{ 
+		\"EPOCH_TIMESTAMP\": \"$(date)\",
+		\"STS_API_KEY\": \"($query)\",
+	}"
+}
+```
+
+In this example, our `bash function` imports `Querystring` and `Curl` to parse the incoming url `path` as an `API token` and securely submits it to the destination `Server`along with a `Timestamp` request.
+
+
+## Features
+
+With just one single line of code, you can simplify the logic of data fetching in your project, and also have all these amazing features out-of-the-box:
+
+- **Fast**, **lightweight** and **reusable** data fetching
+- Built-in **cache** and request deduplication
+- **Real-time** experience
+- Transport and protocol agnostic
+- SSR / ISR / SSG support
+- TypeScript ready
+- React Native
+
+SWR has you covered in all aspects of speed, correctness, and stability to help you build better experiences:
+
+- Fast page navigation
+- Polling on interval
+- Data dependency
+- Revalidation on focus
+- Revalidation on network recovery
+- Local mutation (Optimistic UI)
+- Smart error retry
+- Pagination and scroll position recovery
+- React Suspense
+
+And a lot [more](/docs/getting-started).
+
+## Community
+
+<p className="flex h-6">
+  <img alt="stars" src="https://badgen.net/github/stars/vercel/swr" className="inline-block mr-2"/>
+  <img alt="downloads" src="https://badgen.net/npm/dt/swr" className="inline-block mr-2"/>
+  <img alt="license" src="https://badgen.net/npm/license/swr" className="inline-block mr-2"/>
+</p>
+
+SWR is created by the same team behind [Next.js](https://nextjs.org), the React framework.  
+Follow [@vercel](https://twitter.com/vercel) on Twitter for future project updates.
+
+Feel free to join the [discussions on GitHub](https://github.com/vercel/swr/discussions)!

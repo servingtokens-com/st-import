@@ -26,7 +26,7 @@ operations because of the debug logging:
 import: importing 'assert'
 import: normalized URL 'https://import.sh/assert'
 import: HTTP GET https://import.sh/assert
-import: resolved location 'https://import.sh/assert' -> 'https://raw.githubusercontent.com/servingtokens-com/assert/master/assert.sh'
+import: resolved location 'https://import.sh/assert' -> 'https://raw.githubusercontent.com/st-network/assert/master/assert.sh'
 import: calculated hash 'https://import.sh/assert' -> '0a1c5188c768b3b150f1a8a104bb71a3fa160aad'
 import: creating symlink ‘/tmp/links/https/import.sh/assert’ -> ‘../../../data/0a1c5188c768b3b150f1a8a104bb71a3fa160aad’
 import: successfully downloaded 'https://import.sh/assert' -> '/tmp/data/0a1c5188c768b3b150f1a8a104bb71a3fa160aad'

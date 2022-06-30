@@ -1,0 +1,88 @@
+---
+title: React Hooks for Data Fetching
+---
+
+import Callout from 'nextra-theme-docs/callout'
+import Features from 'components/features'
+import Bleed from 'nextra-theme-docs/bleed'
+import CustomLink from 'components/CustomLink'
+
+{
+// wrapped with {} to mark it as javascript so mdx will not put it under a p tag
+}
+
+{<h1 className="inline-block pb-0 text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-300">Caching</h1>}
+
+<Callout emoji="✅">
+ Creating an account is <strong>easy</strong>, and requires no <strong>card</strong> to <CustomLink href="http://localhost:3333/auth/register">register</CustomLink>.
+</Callout>
+
+Caching is a core concept in `import`. Scripts are downloaded exactly once, and then cached to your filesystem forever.  
+
+ (unless the `IMPORT_RELOAD=1` environment variable is set).
+
+```bash
+#!/usr/bin/env import
+
+# Import script files to the `/tmp` directory
+IMPORT_CACHE="/tmp"
+
+# Log information related to `import` to stderr
+IMPORT_DEBUG=1
+
+# Force a fresh download of script files (like Shift + Reload in the browser)
+IMPORT_RELOAD=1
+
+import assert
+```
+
+[Copy Code](/examples/basic)
+
+If you run this example, then you can see the file structure and order of operations because of the debug logging:
+
+```mdx
+import: importing 'assert'
+import: normalized URL 'https://import.sh/assert'
+import: HTTP GET https://import.sh/assert
+import: resolved location 'https://import.sh/assert' -> 'https://raw.githubusercontent.com/importpw/assert/master/assert.sh'
+import: calculated hash 'https://import.sh/assert' -> '0a1c5188c768b3b150f1a8a104bb71a3fa160aad'
+import: creating symlink ‘/tmp/links/https/import.sh/assert’ -> ‘../../../data/0a1c5188c768b3b150f1a8a104bb71a3fa160aad’
+import: successfully downloaded 'https://import.sh/assert' -> '/tmp/data/0a1c5188c768b3b150f1a8a104bb71a3fa160aad'
+import: sourcing '/tmp/links/https/import.sh/assert'
+```
+
+Now let's take a look at what the actual directory structure looks like:
+
+```mdx
+$ tree /tmp
+
+/tmp
+├── data
+│   └── bf671d3752778f91ad0884ff81b3e963af9e4a4f
+├── links
+│   └── https
+│       └── import.sh
+│           └── assert -> ../../../data/bf671d3752778f91ad0884ff81b3e963af9e4a4f
+└── locations
+    └── https
+        └── import.sh
+            └── assert
+```
+
+`import` generates three subdirectories under the `IMPORT_CACHE` directory:
+
+`data` - The raw shell scripts, named after the sha1sum of the file contents
+`links` - Symbolic links that are named according to the import URL
+`locations` - Files named according to the import URL that point to the real URL
+
+## Cache location
+
+If the `IMPORT_CACHE` environment variable is not set, the cache location defaults to the directory `import.sh` in the OS-specific user cache directory. For this user cache directory `import` considers (in order):
+
+<b className="text-lg">`$XDG_CACHE_HOME`</b> # (usually set on Linux)
+
+<b className="text-lg">`$LOCALAPPDATA`</b> # (usually set on Windows)
+
+<b className="text-lg">`$HOME/Library/Caches`</b> on macOS
+
+and <b className="text-lg">`$HOME/.cache`</b> everywhere else

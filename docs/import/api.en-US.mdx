@@ -1,0 +1,80 @@
+---
+title: React Hooks for Data Fetching
+---
+
+import Callout from 'nextra-theme-docs/callout'
+import Features from 'components/features'
+import Bleed from 'nextra-theme-docs/bleed'
+import CustomLink from 'components/CustomLink'
+
+{
+// wrapped with {} to mark it as javascript so mdx will not put it under a p tag
+}
+{<h1 className="inline-block pb-0 text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-300">API Endpoints</h1>}
+
+<Callout emoji="✅">
+ Creating an account is <strong>easy</strong>, and requires no <strong>card</strong> to <CustomLink href="http://localhost:3333/auth/register">register</CustomLink>.
+</Callout>
+
+## import "$url"
+
+The core import function downloads the $url parameter and caches it to the file system. Finally, it sources the downloaded script.
+
+```bash
+#!/usr/bin/env import
+import "https://import.sh/string@0.2.0"
+
+echo InPuT | string_upper
+# INPUT
+```
+
+[Copy Code](/examples/basic)
+
+## import_file "$url"
+
+Uses the same download and caching infrastructure as `import`, but prints the local file path instead of sourcing the file. This enables working with arbitrary files such as scripts from other languages, simple data files, binary files, etc.
+
+```ruby
+#!/usr/bin/env import
+
+ruby "$(import_file https://import.sh/importpw/import/test/static/sum.rb)" 9 10 11 12
+# 42
+```
+
+[Copy Code](/examples/basic)
+
+## import_cache_dir "$name"
+
+Returns the operating system specific path to the cache directory for the given `$name`. This function honors the <CustomLink href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html">XDG Base Directory Specification</CustomLink> by utilizing the <b className="text-lg">`$XDG_CACHE_HOME`</b> environment variable, if defined. Otherwise it falls back to using:
+
+```bash
+#!/usr/bin/env import
+
+import_cache_dir example
+# /Users/nate/Library/Caches/example
+
+XDG_CACHE_HOME=/cache import_cache_dir example
+# /cache/example
+```
+
+[Copy Code](/examples/basic)
+
+<b className="text-lg">`$HOME`</b>`/Library/Caches` # on macOS
+
+<b className="text-lg">`$LOCALAPPDATA`</b> #  on Windows 
+
+<b className="text-lg">`$HOME`</b>`/.cache` # everywhere else
+
+## import_cache_dir_import
+
+Returns the operating system specific path to the cache directory that files imported using `import` are written to. This function returns the contents the <b className="text-lg">`$IMPORT_CACHE`</b> environment variable, if defined. Otherwise it returns the result of `import_cache_dir import.sh`.
+
+```bash
+#!/usr/bin/env import
+
+import_cache_dir_import
+# /Users/nate/Library/Caches/import.sh
+
+IMPORT_CACHE=/tmp import_cache_dir_import
+# /tmp
+```

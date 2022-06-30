@@ -1,0 +1,84 @@
+---
+title: React Hooks for Data Fetching
+---
+
+import Callout from 'nextra-theme-docs/callout'
+import Features from 'components/features'
+import Bleed from 'nextra-theme-docs/bleed'
+import CustomLink from 'components/CustomLink'
+
+{
+// wrapped with {} to mark it as javascript so mdx will not put it under a p tag
+}
+{<h1 className="inline-block pb-0 text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-300">Curl</h1>}
+
+<Callout emoji="✅">
+ Creating an account is <strong>easy</strong>, and requires no <strong>card</strong> to <CustomLink href="http://localhost:3333/auth/register">register</CustomLink>.
+</Callout>
+
+{<h1 className="text-gray-400">import-curl.sh example:</h1>}
+
+And it's as easy as...
+
+```bash
+#!/usr/bin/env import
+
+# defining environmental variables for the build
+# First, we define our `/tmp` directory to cache the incoming steghide install.
+IMPORT_CACHE="/tmp"
+# Next, we call for a fresh download of script files (this is like Shift + Reload in the browser).
+IMPORT_RELOAD=1
+# Lastly, we can log information related to `import` to standard error "a.k.a. stderr".
+IMPORT_DEBUG=1
+
+handler() {
+    import curl
+    type curl
+    curl --version
+}
+```
+
+[Copy Code](/examples/basic)
+
+We <CustomLink href="/docs/building">`build`</CustomLink> the service and hit our API endpoint in the browser. Checkout the example => <CustomLink href="https://www.curl-tests-02.servingtokens.com/api/importcurl">`https://www.curl-tests-02.servingtokens.com/api/importcurl`</CustomLink>
+
+Once the build is successful `curl` gets cached to the file system forever, and it's "bus load" of useful <CustomLink href="https://man7.org/linux/man-pages/man1/curl.1.html">`features`</CustomLink> can now be accessed from within the function.
+
+```bash
+curl is hashed (/var/task/.import-cache/bin/curl)
+curl 7.63.0 (x86_64-pc-linux-musl) libcurl/7.63.0 OpenSSL/1.0.2q zlib/1.2.11
+Release-Date: 2018-12-12
+Protocols: dict file ftp ftps gopher http https imap imaps pop3 pop3s rtsp smb smbs smtp smtps telnet tftp 
+Features: AsynchDNS IPv6 Largefile NTLM NTLM_WB SSL libz TLS-SRP UnixSockets HTTPS-proxy 
+```
+
+Click here if you would like to dive into <CustomLink href="https://man7.org/linux/man-pages/man1/curl.1.html">`manual pages`</CustomLink> and see how you can start building with `curl`.
+
+### For more fine-grained documentation on the Servingtokens.com compiler and what is happening under the hood click <CustomLink href="https://man7.org/linux/man-pages/man1/curl.1.html">`here`</CustomLink>
+
+In our next example we use `curl` in cosequence with `eval` to scrape text from a webpage and build a text file called `text-file.txt`. We then write the file to the system's `/tmp` directory.
+
+____________________________________________________________
+
+
+```bash
+#!/usr/bin/env import
+
+# environmental variables for the build
+IMPORT_SERVER="https://www.static.servingtokens.com"
+# We define our `/tmp` directory to cache the incoming steghide install.
+IMPORT_CACHE="/tmp"
+# Next, we call for a fresh download of script files (this is like Shift + Reload in the browser).
+IMPORT_RELOAD=1
+# Lastly, we can log information related to `import` to standard error "a.k.a. stderr".
+IMPORT_DEBUG=1
+
+handler() {
+    eval "$(curl -LfsS https://static.servingtokens.com >  $IMPORT_CACHE/text-file.txt)" \
+    echo "Hello script at: $(cat $IMPORT_CACHE/text-file.txt)"
+}
+```
+
+____________________________________________________________
+
+In our example we 

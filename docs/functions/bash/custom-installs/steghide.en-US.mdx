@@ -1,0 +1,75 @@
+---
+title: React Hooks for Data Fetching
+---
+
+import Callout from 'nextra-theme-docs/callout'
+import Features from 'components/features'
+import Bleed from 'nextra-theme-docs/bleed'
+import CustomLink from 'components/CustomLink'
+
+{
+// wrapped with {} to mark it as javascript so mdx will not put it under a p tag
+}
+{<h1 className="inline-block pb-0 text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-300">Steghide</h1>}
+
+<Callout emoji="✅">
+ Creating an account is <strong>easy</strong>, and requires no <strong>card</strong> to <CustomLink href="http://localhost:3333/auth/register">register</CustomLink>.
+</Callout>
+
+### 👢 Bootstrapping Steghide
+
+* Note: The tarball in this example is pulled from a public github repository. For more information on using private repo's in your builds see the <CustomLink href="/import/authentication">`import authentication`</CustomLink> documentation.
+
+In the following example, we are able to install steghide from source. First we obtain the steghide.tar.xz file from Github via curl. Next we extract the tarball and install it in the file system.
+
+The code for the following example looks like this:
+
+```bash
+#!/usr/bin/env import
+
+# defining environmental variables for the build
+# First, we define our `/tmp` directory to cache the incoming steghide install.
+IMPORT_CACHE="/tmp"
+# Next, we call for a fresh download of script files (this is like Shift + Reload in the browser).
+IMPORT_RELOAD=1
+# Lastly, we can log information related to `import` to standard error "a.k.a. stderr".
+IMPORT_DEBUG=1
+
+build() {
+    eval "$(date > build-time.txt)" \
+    eval "$(cd $IMPORT_CACHE)" \
+    eval "$(curl -LfsS https://github.com/servingtokens-sh/modules/blob/main/steghide.tar.xz | tar xzvf -)" \
+    eval "$(cd steghide* |
+    ./configure)" \
+    eval "$(make)" \
+    eval "$(make install)" \
+    eval "$(cd ..)" \
+    eval "$(rm -rf steghide*)"
+}
+
+handler() {
+    http_response_header "Content-Type" "text/html; charset=utf8"
+
+    echo "Build Status: Successful"
+    echo "|"
+    echo "Steghide was installed and cached to $IMPORT_CACHE/steghide"
+    echo "|"
+    echo "Build time: $(cat build-time.txt)"
+    echo "|"
+	echo "Current time: $(date)"
+    echo "|"
+    echo "- servingtokens.com"
+}
+}
+```
+
+[Copy](/examples/basic) |
+ [Build](/examples/basic)
+
+If you visit the newly created `deployment url`, then Servingtokens.com should build a fresh html page in response.
+
+```html
+Build Status: Successful | Steghide was installed and cached to /tmp/steghide | Build time: Fri May 20 17:59:48 UTC 2022 | Current time: Fri May 20 18:03:34 UTC 2022 | - servingtokens.com
+```
+
+Check it out in action at <CustomLink href="https://www.custom-install-steghide.servingtokens.com/api/bootstrap-steghide">https://www.custom-install-steghide.servingtokens.com/api/bootstrap-steghide</CustomLink>, 

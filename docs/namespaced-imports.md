@@ -33,13 +33,13 @@ conventions:
 
  * The main import syntax is `import <org>/<repo>`
  * The entry point of the import is the file with the name of the repo with a `.sh` suffix
- * If there is no `/` in the import path, then the default org ([servingtokens-com][]) is applied
+ * If there is no `/` in the import path, then the default org ([st-network][]) is applied
  * Specific tags may be referenced by appending an `@<version>` to the end
 
 
 ## Top-level imports
 
-The [servingtokens-com][] GitHub organization houses the top-level namespace imports.
+The [st-network][] GitHub organization houses the top-level namespace imports.
 A top-level import happens when there is no `/` in the import path.
 
 For example, the `assert` module includes functions that write simple unit
@@ -68,7 +68,7 @@ Here are some useful top-level imports:
  * [string](https://import.sh/string)
  * [tcp](https://import.sh/tcp)
 
-See the [servingtokens-com][] org on GitHub for the complete listing of repositories.
+See the [st-network][] org on GitHub for the complete listing of repositories.
 
 
 ## Community imports
@@ -81,7 +81,7 @@ Here are some GitHub repositories that are known to be compatible with `import`:
  * [robwhitby/shakedown](https://import.sh/robwhitby/shakedown)
  * [tootallnate/nexec](https://import.sh/tootallnate/nexec)
 
-(Send a [pull request](https://github.com/servingtokens-com/st-import/pulls) if you would like to have an import listed here)
+(Send a [pull request](https://github.com/st-network/st-import/pulls) if you would like to have an import listed here)
 
 [hello]: https://github.com/TooTallNate/hello
-[servingtokens-com]: https://github.com/servingtokens-com
+[st-network]: https://github.com/st-network

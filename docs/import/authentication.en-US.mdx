@@ -1,0 +1,42 @@
+---
+title: React Hooks for Data Fetching
+---
+
+import Callout from 'nextra-theme-docs/callout'
+import Features from 'components/features'
+import Bleed from 'nextra-theme-docs/bleed'
+import CustomLink from 'components/CustomLink'
+
+{
+// wrapped with {} to mark it as javascript so mdx will not put it under a p tag
+}
+{<h1 className="inline-block pb-0 text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-300">Authentication</h1>}
+
+<Callout emoji="✅">
+ Creating an account is <strong>easy</strong>, and requires no <strong>card</strong> to <CustomLink href="http://localhost:3333/auth/register">register</CustomLink>.
+</Callout>
+
+Because import uses curl, you can use the standard .netrc file format to define your username and passwords to the server you are importing from.
+
+For example, to make script files in private GitHub repos accessible, create a ~/.netrc file that contains something like:
+
+```mdx
+machine   raw.githubusercontent.com
+login     231a4a02aeb1fbcf164f7c444ae5a211c1451d95
+password  x-oauth-basic
+```
+
+The `login` token is a <CustomLink href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/">GitHub "personal access token".</CustomLink> 
+
+
+Follow the instructions in that link to create one for yourself.
+
+After that, an import call to a private repo will work as expected:
+
+```bash
+import "my-organization/private-repo@1.0.0"
+```
+
+<Callout emoji="✅">
+	Your GitHub credentials <b>ARE NEVER </b> given to the <strong>`import.sh`</strong> server. They are only used <strong className="italics">locally</strong> by  <strong>`curl`</strong> once the server redirects to the private repo URL.
+</Callout>

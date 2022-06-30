@@ -1,0 +1,46 @@
+---
+title: React Hooks for Data Fetching
+---
+
+import Callout from 'nextra-theme-docs/callout'
+import Features from 'components/features'
+import Bleed from 'nextra-theme-docs/bleed'
+import CustomLink from 'components/CustomLink'
+
+{
+// wrapped with {} to mark it as javascript so mdx will not put it under a p tag
+}
+{<h1 className="text-center font-extrabold md:text-5xl mt-8">Self Service API</h1>}
+
+<Bleed><Features/></Bleed>
+
+## Self Service API Endpoints
+
+In this example, our `bash function` imports the `Querystring` module to parse the incoming url `path` and builds a `json` formatted response with the `query` attatched as the `STS_API_TOKEN` environmental variable that acts as an an API token for further use and rate-limiting. 
+
+```bash
+#!/usr/bin/env import
+
+import "querystring@1.3.0"
+
+handler() {
+	http_response_json
+	local path
+	local query
+	path="$(jq -r '.path' < "$1")"
+	echo "{ 
+		\"EPOCH_TIMESTAMP\": \"$(date)\",
+		\"STS_API_KEY\": \"($query)\",
+	}"
+}
+```
+
+This function also builds the current Date and attatches it to the response via <CustomLink href="https://www.epochconverter.com/">`epoch timestamp`</CustomLink> which is great for logging purposes.
+
+
+<div className="mt-16 mb-20 text-center">
+  [Copy Code](/examples/basic) 
+</div>
+
+
+

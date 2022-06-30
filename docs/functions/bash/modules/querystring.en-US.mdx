@@ -1,0 +1,65 @@
+---
+title: React Hooks for Data Fetching
+---
+
+import Callout from 'nextra-theme-docs/callout'
+import Features from 'components/features'
+import Bleed from 'nextra-theme-docs/bleed'
+import CustomLink from 'components/CustomLink'
+
+{
+// wrapped with {} to mark it as javascript so mdx will not put it under a p tag
+}
+{<h1 className="inline-block pb-0 text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-300">Querystring</h1>}
+
+<Callout emoji="✅">
+ Creating an account is <strong>easy</strong>, and requires no <strong>card</strong> to <CustomLink href="http://localhost:3333/auth/register">register</CustomLink>.
+</Callout>
+
+{<h1 className="text-gray-400">import-curl.sh example:</h1>}
+
+The querystring module is imported.
+
+```bash
+#!/usr/bin/env import
+
+import "querystring@1.3.0"
+
+type 
+
+handler() {
+	http_response_json
+	local path
+	local query
+	path="$(jq -r '.path' < "$1")"
+	echo "{ 
+		\"STS_API_KEY\": \"($query)\",
+	}"
+}
+```
+
+[Copy Code](/examples/basic)
+
+We <CustomLink href="/docs/building">`build`</CustomLink> the service and hit our API endpoint in the browser. Checkout the example => <CustomLink href="https://www.curl-tests-02.servingtokens.com/api/importcurl">`https://www.curl-tests-02.servingtokens.com/api/importcurl`</CustomLink>
+
+```bash
+curl is hashed (/var/task/.import-cache/bin/curl)
+curl 7.63.0 (x86_64-pc-linux-musl) libcurl/7.63.0 OpenSSL/1.0.2q zlib/1.2.11
+Release-Date: 2018-12-12
+Protocols: dict file ftp ftps gopher http https imap imaps pop3 pop3s rtsp smb smbs smtp smtps telnet tftp 
+Features: AsynchDNS IPv6 Largefile NTLM NTLM_WB SSL libz TLS-SRP UnixSockets HTTPS-proxy 
+```
+
+Once the build is successful `curl` is cached to the file system forever, and its "bus load" of <CustomLink href="https://man7.org/linux/man-pages/man1/curl.1.html">`features`</CustomLink> are now accessible in our function. 
+
+Click here if you would like to dive into <CustomLink href="https://man7.org/linux/man-pages/man1/curl.1.html">`manual pages`</CustomLink> and see how you can start building with `curl`.
+
+### For more fine-grained documentation on the Servingtokens.com compiler and what is happening under the hood click <CustomLink href="https://man7.org/linux/man-pages/man1/curl.1.html">`here`</CustomLink>
+
+____________________________________________________________________________________________________
+
+In our next example we use `import`, and the `eval` method in cosequence with `curl` to import shell scripts from private github url's and cache them to the file system.
+
+```bash
+# code coming soon
+```

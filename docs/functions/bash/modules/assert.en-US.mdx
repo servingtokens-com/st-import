@@ -1,0 +1,48 @@
+---
+title: React Hooks for Data Fetching
+---
+
+import Callout from 'nextra-theme-docs/callout'
+import Features from 'components/features'
+import Bleed from 'nextra-theme-docs/bleed'
+import CustomLink from 'components/CustomLink'
+
+{
+// wrapped with {} to mark it as javascript so mdx will not put it under a p tag
+}
+{<h1 className="inline-block pb-0 text-transparent bg-clip-text bg-gradient-to-r from-white to-teal-300">Assert</h1>}
+
+<Callout emoji="✅">
+ Creating an account is <strong>easy</strong>, and requires no <strong>card</strong> to <CustomLink href="http://localhost:3333/auth/register">register</CustomLink>.
+</Callout>
+
+{<h1 className="text-gray-400">Importassert.sh</h1>}
+
+```bash
+#!/usr/bin/env import
+
+# Import script files to the `/tmp` directory
+IMPORT_CACHE="/tmp"
+# Log information related to `import` to stderr
+IMPORT_DEBUG=1
+# Force a fresh download of script files (like Shift + Reload in the browser)
+IMPORT_RELOAD=1
+
+build() {
+    date > build-time.txt
+}
+
+handler() {
+    eval "$(curl -sfLS https://import.sh)"
+    type import
+    import --version
+    import assert
+    type assert 
+    assert --version
+    echo "Build time: $(cat build-time.txt)"
+	echo "Current time: $(date)"
+}
+```
+
+[Copy Code](/examples/basic)
+
